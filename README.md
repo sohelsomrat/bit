@@ -52,25 +52,51 @@ go build -o bit ./cmd/bit
 
 ## 📦 Installation
 
-### Prerequisites
+### Quick Install (Linux/macOS)
 
-- **Go 1.25+** - Required for proper module support
+```bash
+curl -sfL https://raw.githubusercontent.com/superstarryeyes/bit/main/install.sh | sh
+```
 
-### Build Commands
+This installs `bit` to `/usr/local/bin`. The binary works in two modes:
+- **Interactive UI**: Run `bit` with no arguments
+- **CLI mode**: Run `bit [options] <text>` to render directly
+
+### Manual Installation
+
+Download the latest release for your platform from the [Releases page](https://github.com/superstarryeyes/bit/releases).
+
+**Available for:**
+- Linux (x86_64, arm64)
+- macOS (x86_64, arm64)
+- Windows (x86_64, arm64)
+
+**Extract and install:**
+
+```bash
+# Linux/macOS
+tar -xzf bit_*_Linux_x86_64.tar.gz
+sudo mv bit /usr/local/bin/
+
+# Windows (PowerShell)
+Expand-Archive bit_*_Windows_x86_64.zip
+# Move bit.exe to your PATH
+```
+
+### Build from Source
+
+**Prerequisites:** Go 1.25+
 
 ```bash
 # Clone repository
 git clone https://github.com/superstarryeyes/bit
 cd bit
 
-# Install dependencies
-go mod tidy
+# Build the binary
+make build
 
-# Build the interactive UI (includes embedded fonts)
+# Or manually
 go build -o bit ./cmd/bit
-
-# Build the command line tool
-go build -o ansifonts-cli ./cmd/ansifonts
 ```
 
 > [!NOTE]
@@ -80,7 +106,26 @@ go build -o ansifonts-cli ./cmd/ansifonts
 
 ## 💻 Usage
 
-### Keyboard Controls
+### Running Bit
+
+```bash
+# Start interactive UI
+bit
+
+# CLI mode - quick render
+bit "Hello World"
+
+# CLI mode - with options
+bit -font ithaca -color 31 "Red Text"
+
+# List all fonts
+bit -list
+
+# Show help
+bit -help
+```
+
+### Interactive UI - Keyboard Controls
 
 | **Key Binding**                         | **Action Description**                                                                         |
 | --------------------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -137,40 +182,42 @@ The UI features **6 main control panels** with sub-modes accessible via **Tab** 
 > [!WARNING]
 > If shadows are enabled with half-pixel characters, a warning appears in the title bar. The library automatically disables shadows in this case to prevent visual artifacts.
 
-### Command Line Tool
+### CLI Mode
+
+The `bit` binary includes a powerful CLI mode for quick text rendering:
 
 #### Basic Commands
 
 ```bash
 # Render text with default settings
-./ansifonts-cli "Hello"
+bit "Hello"
 
 # List all available fonts
-./ansifonts-cli -list
+bit -list
 
 # Use specific font and color (ANSI code)
-./ansifonts-cli -font ithaca -color 31 "Red"
+bit -font ithaca -color 31 "Red"
 
 # Use specific font and color (hex code)
-./ansifonts-cli -font ithaca -color "#FF0000" "Red"
+bit -font ithaca -color "#FF0000" "Red"
 
 # Gradient text with ANSI codes
-./ansifonts-cli -font dogica -color 31 -gradient 34 -direction right "Gradient"
+bit -font dogica -color 31 -gradient 34 -direction right "Gradient"
 
 # Gradient text with hex codes
-./ansifonts-cli -font dogica -color "#FF0000" -gradient "#0000FF" "Gradient"
+bit -font dogica -color "#FF0000" -gradient "#0000FF" "Gradient"
 
 # Text with shadow
-./ansifonts-cli -font larceny -color 94 -shadow -shadow-h 2 -shadow-v 1 "Shadow"
+bit -font larceny -color 94 -shadow -shadow-h 2 -shadow-v 1 "Shadow"
 
 # Scaled text
-./ansifonts-cli -font pressstart -color 32 -scale 1 "2X"
+bit -font pressstart -color 32 -scale 1 "2X"
 
 # Aligned text
-./ansifonts-cli -font gohufontb -color 93 -align right "Go\nRight"
+bit -font gohufontb -color 93 -align right "Go\nRight"
 ```
 
-#### Command Line Options
+#### CLI Options
 
 | **Flag**          | **Description**                | **Values**                              |
 | ----------------- | ------------------------------ | --------------------------------------- |

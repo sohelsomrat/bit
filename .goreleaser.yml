@@ -1,0 +1,107 @@
+version: 2
+
+project_name: bit
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: bit
+    binary: bit
+    main: ./cmd/bit
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w
+      - -X main.version={{ .Version }}
+      - -X main.commit={{ .Commit }}
+      - -X main.date={{ .Date }}
+
+archives:
+  - name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+    files:
+      - LICENSE
+      - README.md
+      - ansifonts/README.md
+
+checksum:
+  name_template: checksums.txt
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^chore:'
+      - Merge pull request
+      - Merge branch
+  groups:
+    - title: Features
+      regexp: '^.*feat(\(.+\))?!?:'
+      order: 0
+    - title: Bug fixes
+      regexp: '^.*fix(\(.+\))?!?:'
+      order: 1
+    - title: Others
+      order: 999
+
+release:
+  github:
+    owner: superstarryeyes
+    name: bit
+  draft: false
+  prerelease: auto
+  mode: replace
+  header: |
+    ## Bit {{ .Tag }} Release
+
+    Terminal ANSI Logo Designer & Font Library with 100+ bitmap fonts
+
+    ### Quick Install
+
+    **Linux/macOS**
+    ```bash
+    curl -sfL https://raw.githubusercontent.com/superstarryeyes/bit/main/install.sh | sh
+    ```
+
+    **Manual Download**
+    Pick the archive for your platform below.
+
+  footer: |
+    ---
+    
+    **Full Changelog:** https://github.com/superstarryeyes/bit/compare/{{ .PreviousTag }}...{{ .Tag }}
+    
+    ### What's Included
+    
+    Each archive contains:
+    - `bit` binary (interactive UI + CLI mode)
+    - Documentation and license files
+    
+    ### Usage
+    
+    ```bash
+    bit              # Start interactive UI
+    bit -list        # List all fonts
+    bit "Hello"      # Quick render
+    bit -help        # Show all options
+    ```
