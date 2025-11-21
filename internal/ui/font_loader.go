@@ -3,7 +3,7 @@ package ui
 import (
 	"encoding/json"
 	"fmt"
-	"path/filepath"
+	"path"
 	"sort"
 	"strings"
 
@@ -22,8 +22,8 @@ func loadFontList() ([]FontInfo, error) {
 	}
 
 	for _, entry := range entries {
-		if filepath.Ext(entry.Name()) == ".bit" {
-			fontPath := filepath.Join("fonts", entry.Name())
+		if path.Ext(entry.Name()) == ".bit" {
+			fontPath := path.Join("fonts", entry.Name())
 
 			// For lazy loading, we only load the font name from the file
 			// This is much more efficient than loading the entire font data
